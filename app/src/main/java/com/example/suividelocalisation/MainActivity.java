@@ -27,7 +27,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-    private static final String SERVER_URL = "http://192.168.1.41:8080"; // Replace with your server URL
+    private static final String SERVER_URL = "http://192.168.1.41:8080"; // Mettez à jour avec votre URL de serveur
 
     private Handler locationUpdateHandler = new Handler();
 
@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://192.168.1.41:8080");
+                    Log.d("LocationSent", "Position envoyée au serveur : Latitude " + latitude + " Longitude " + longitude);
+                    URL url = new URL(SERVER_URL);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("POST");
                     connection.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -129,4 +130,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).start();
-    }}
+    }
+}
